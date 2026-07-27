@@ -41,7 +41,7 @@ dependencies {
     implementation "com.teamabnormals:blueprint:${project.mc_version}-${project.blueprint}"
 
     implementation "maven.modrinth:farmers-delight:${project.mc_version}-${project.farmers_delight}"
-    implementation files("libs/rkktprv.jar")
+    implementation "com.rosemods:windswept-1.21.1:4.0.0-SNAPSHOT"
 
     implementation "com.teamabnormals:gallery:${project.mc_version}-${project.gallery}"
 
@@ -63,6 +63,7 @@ repositories {
     maven { url = "https://api.modrinth.com/maven" }
     maven { url "https://www.cursemaven.com" }
     maven { url "https://modmaven.dev" }
+    maven { url "https://registry.somethingcatchy.net/repository/maven-public/"}
 }
 
 tasks.withType(ProcessResources).configureEach {
