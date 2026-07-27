@@ -1,6 +1,5 @@
 package com.rosemods.windswept_delights.core.other;
 
-import com.mojang.datafixers.util.Pair;
 import com.rosemods.windswept.core.other.WindsweptFoods;
 import com.rosemods.windswept.core.registry.WindsweptEffects;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -23,4 +22,8 @@ public final class WDFoods {
     public static final FoodProperties CHOCOLATE_SNOW_CONE = new FoodProperties.Builder().nutrition(15).alwaysEdible().saturationModifier(.6f).effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 300, 0), 1f).build();
     public static final FoodProperties WILD_BERRY_JUICE = new FoodProperties.Builder().alwaysEdible().effect(() -> new MobEffectInstance(WindsweptEffects.FROST_RESISTANCE, 1200, 0), 1f).build();
 
+    public static void modifyFoodValues() {
+        WindsweptFoods.CHESTNUT_SOUP.effects().add(new FoodProperties.PossibleEffect(() -> new MobEffectInstance(ModEffects.COMFORT, FoodValues.MEDIUM_DURATION), 1f));
+        WindsweptFoods.GOAT_STEW.effects().add(new FoodProperties.PossibleEffect(() -> new MobEffectInstance(ModEffects.COMFORT, FoodValues.MEDIUM_DURATION), 1f));
     }
+}

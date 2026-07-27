@@ -2,8 +2,11 @@ package com.rosemods.windswept_delights.core;
 
 import com.rosemods.windswept_delights.core.data.client.WDLanguageProvider;
 import com.rosemods.windswept_delights.core.data.client.WDModelProvider;
-import com.rosemods.windswept_delights.core.data.server.*;
-import com.rosemods.windswept_delights.core.data.server.tags.*;
+import com.rosemods.windswept_delights.core.data.server.WDDataMapProvider;
+import com.rosemods.windswept_delights.core.data.server.WDLootTableProvider;
+import com.rosemods.windswept_delights.core.data.server.WDRecipeProvider;
+import com.rosemods.windswept_delights.core.data.server.tags.WDBlockTagsProvider;
+import com.rosemods.windswept_delights.core.data.server.tags.WDItemTagsProvider;
 import com.rosemods.windswept_delights.core.other.WDCreativeTabs;
 import com.rosemods.windswept_delights.core.other.WDFoods;
 import com.rosemods.windswept_delights.core.registry.WDBlocks;
@@ -13,10 +16,12 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
@@ -28,20 +33,18 @@ public class WindsweptDelights {
     public static final RegistryHelper REGISTRY_HELPER = new RegistryHelper(MOD_ID);
 
     public WindsweptDelights(IEventBus bus, ModContainer container) {
-        REGISTRY_HELPER.register(bus);
+        WDBlocks.BLOCKS.register(bus);
+        WDItems.ITEMS.register(bus);
 
-        WDBlocks.BLOCKS.getClass();
-        WDItems.ITEMS.getClass();
+        if (FMLEnvironment.dist == Dist.CLIENT)
+            WDCreativeTabs.setupTabEditors();
 
         bus.addListener(this::commonSetup);
         bus.addListener(this::dataSetup);
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
-        event.enqueueWork(() -> {
-            WDCreativeTabs.setupTabEditors();
-            net.minecraft.world.level.block.ComposterBlock.COMPOSTABLES.put(WDItems.CHRISTMAS_PUDDING_SLICE.get().asItem(), .85f);
-        });
+        event.enqueueWork(WDFoods::modifyFoodValues);
     }
 
     private void dataSetup(GatherDataEvent event) {

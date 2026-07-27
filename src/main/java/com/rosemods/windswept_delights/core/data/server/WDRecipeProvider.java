@@ -48,6 +48,7 @@ public class WDRecipeProvider extends BlueprintRecipeProvider {
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, CHORUS_SNOW_CONE.get()).requires(PINECONE.get()).requires(Items.CHORUS_FRUIT).requires(Items.SNOWBALL).requires(Items.SUGAR).unlockedBy(getHasName(Items.CHORUS_FRUIT), has(Items.CHORUS_FRUIT)).save(output, getSaveLocation(CHORUS_SNOW_CONE.get()));
     }
 
+
     private static void cabinet(Block cabinet, Block slab, Block trapdoor, RecipeOutput output) {
         ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, cabinet).define('#', slab).define('T', trapdoor).pattern("###").pattern("T T").pattern("###").unlockedBy(getHasName(trapdoor), has(trapdoor)).save(output, getSaveLocation(cabinet));
     }
