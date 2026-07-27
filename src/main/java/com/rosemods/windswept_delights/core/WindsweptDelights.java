@@ -20,6 +20,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
@@ -37,7 +38,7 @@ public class WindsweptDelights {
         WDItems.ITEMS.register(bus);
 
         if (FMLEnvironment.dist == Dist.CLIENT)
-            WDCreativeTabs.setupTabEditors();
+            bus.addListener(this::clientSetup);
 
         bus.addListener(this::commonSetup);
         bus.addListener(this::dataSetup);
@@ -45,6 +46,10 @@ public class WindsweptDelights {
 
     private void commonSetup(FMLCommonSetupEvent event) {
         event.enqueueWork(WDFoods::modifyFoodValues);
+    }
+
+    private void clientSetup(FMLClientSetupEvent event) {
+        event.enqueueWork(WDCreativeTabs::setupTabEditors);
     }
 
     private void dataSetup(GatherDataEvent event) {

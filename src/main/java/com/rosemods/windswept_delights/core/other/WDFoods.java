@@ -23,7 +23,7 @@ public final class WDFoods {
     public static final FoodProperties WILD_BERRY_JUICE = new FoodProperties.Builder().alwaysEdible().effect(() -> new MobEffectInstance(WindsweptEffects.FROST_RESISTANCE, 1200, 0), 1f).build();
 
     public static void modifyFoodValues() {
-        WindsweptFoods.CHESTNUT_SOUP.effects().add(new FoodProperties.PossibleEffect(() -> new MobEffectInstance(ModEffects.COMFORT, FoodValues.MEDIUM_DURATION), 1f));
-        WindsweptFoods.GOAT_STEW.effects().add(new FoodProperties.PossibleEffect(() -> new MobEffectInstance(ModEffects.COMFORT, FoodValues.MEDIUM_DURATION), 1f));
+        //WindsweptFoods.CHESTNUT_SOUP.effects().add(new FoodProperties.PossibleEffect(() -> new MobEffectInstance(ModEffects.COMFORT, FoodValues.MEDIUM_DURATION), 1f));
+        //WindsweptFoods.GOAT_STEW.effects().add(new FoodProperties.PossibleEffect(() -> new MobEffectInstance(ModEffects.COMFORT, FoodValues.MEDIUM_DURATION), 1f));
     }
 }
