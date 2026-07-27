@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "windswept_delights:christmas_pudding_slice"
+    },
+    {
+      "item": "windswept_delights:christmas_pudding_slice"
+    },
+    {
+      "item": "windswept_delights:christmas_pudding_slice"
+    },
+    {
+      "item": "windswept_delights:christmas_pudding_slice"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "windswept:christmas_pudding"
+  }
+}

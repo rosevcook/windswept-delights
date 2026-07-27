@@ -1,0 +1,13 @@
+{
+  "values": {
+    "windswept_delights:chestnut_cabinet": {
+      "burn_time": 300
+    },
+    "windswept_delights:holly_cabinet": {
+      "burn_time": 300
+    },
+    "windswept_delights:pine_cabinet": {
+      "burn_time": 300
+    }
+  }
+}

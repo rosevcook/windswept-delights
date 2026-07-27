@@ -2,21 +2,22 @@ package com.rosemods.windswept_delights.core.data.client;
 
 import com.rosemods.windswept_delights.core.WindsweptDelights;
 import com.teamabnormals.blueprint.core.data.client.BlueprintBlockStateProvider;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
-import net.minecraftforge.client.model.generators.ModelFile;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.client.model.generators.ModelFile;
+import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.registries.DeferredHolder;
 
 import static com.rosemods.windswept_delights.core.registry.WDBlocks.*;
 import static com.rosemods.windswept_delights.core.registry.WDItems.*;
 
 public class WDModelProvider extends BlueprintBlockStateProvider {
-    public WDModelProvider(GatherDataEvent event) {
-        super(event.getGenerator().getPackOutput(), WindsweptDelights.MOD_ID, event.getExistingFileHelper());
+
+    public WDModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
+        super(output, WindsweptDelights.MOD_ID, existingFileHelper);
     }
 
     @Override
@@ -41,16 +42,16 @@ public class WDModelProvider extends BlueprintBlockStateProvider {
         this.cabinet(PINE_CABINET);
     }
 
-    private void itemModel(RegistryObject<Block> block) {
+    private void itemModel(DeferredHolder<Block, ? extends Block> block) {
         this.itemModels().withExistingParent(getName(block.get()), this.blockTexture(block.get()));
     }
 
-    private void generatedItem(RegistryObject<? extends ItemLike> item) {
+    private void generatedItem(DeferredHolder<? extends ItemLike, ? extends ItemLike> item) {
         String name = getName(item.get());
         this.itemModels().withExistingParent(name, "item/generated").texture("layer0", WindsweptDelights.location("item/" + name));
     }
 
-    private void cabinet(RegistryObject<Block> cabinet) {
+    private void cabinet(DeferredHolder<Block, ? extends Block> cabinet) {
         String name = getName(cabinet.get());
         ModelFile model = this.models().orientable(name, this.modLoc("block/" + name + "_side"), this.modLoc("block/" + name + "_front"), this.modLoc("block/" + name + "_end"));
         ModelFile model_open = this.models().orientable(name + "_open", this.modLoc("block/" + name + "_side"), this.modLoc("block/" + name + "_front_open"), this.modLoc("block/" + name + "_end"));
@@ -60,7 +61,7 @@ public class WDModelProvider extends BlueprintBlockStateProvider {
     }
 
     private static String getName(ItemLike item) {
-        return ForgeRegistries.ITEMS.getKey(item.asItem()).getPath();
+        return BuiltInRegistries.ITEM.getKey(item.asItem()).getPath();
     }
 
 }

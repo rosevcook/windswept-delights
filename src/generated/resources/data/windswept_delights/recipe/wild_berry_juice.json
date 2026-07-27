@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "windswept:wild_berries"
+    },
+    {
+      "item": "windswept:wild_berries"
+    },
+    {
+      "item": "windswept:wild_berries"
+    },
+    {
+      "item": "windswept:wild_berries"
+    },
+    {
+      "item": "minecraft:glass_bottle"
+    }
+  ],
+  "result": {
+    "count": 1,
+    "id": "windswept_delights:wild_berry_juice"
+  }
+}

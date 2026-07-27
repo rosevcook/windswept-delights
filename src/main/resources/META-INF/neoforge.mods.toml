@@ -1,0 +1,42 @@
+modLoader = "javafml"
+loaderVersion = "[4,)"
+issueTrackerURL = "https://github.com/rosevcook/windswepts_delights/issues"
+license = "All Rights Reserved"
+
+[[mods]]
+modId = "windswept_delights"
+version = "${mod_version}"
+displayName = "Windswept Delights"
+logoFile = "logo.png"
+itemIcon = "windswept_delights:snow_cone"
+displayURL = "https://www.curseforge.com/minecraft/mc-mods/windsweptmod"
+authors = "Rose, Yape"
+description = '''Cross Content for Windswept and Farmers Delight'''
+
+[[dependencies.windswept_delights]]
+modId = "minecraft"
+type = "required"
+versionRange = "[${mc_version}]"
+ordering = "AFTER"
+side = "BOTH"
+[[dependencies.windswept_delights]]
+modId = "neoforge"
+type = "required"
+versionRange = "[${neoforge},)"
+ordering = "AFTER"
+side = "BOTH"
+[[dependencies.windswept_delights]]
+modId = "blueprint"
+type = "required"
+versionRange = "[${blueprint},)"
+ordering = "AFTER"
+side = "BOTH"
+[[dependencies.windswept_delights]]
+modId = "farmersdelight"
+type = "required"
+versionRange = "[${farmers_delight},)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[mixins]]
+config = "windswept_delights.mixins.json"

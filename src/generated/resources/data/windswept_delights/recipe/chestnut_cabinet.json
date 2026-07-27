@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "windswept:chestnut_slab"
+    },
+    "T": {
+      "item": "windswept:chestnut_trapdoor"
+    }
+  },
+  "pattern": [
+    "###",
+    "T T",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "windswept_delights:chestnut_cabinet"
+  }
+}

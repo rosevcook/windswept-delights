@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "windswept:pine_slab"
+    },
+    "T": {
+      "item": "windswept:pine_trapdoor"
+    }
+  },
+  "pattern": [
+    "###",
+    "T T",
+    "###"
+  ],
+  "result": {
+    "count": 1,
+    "id": "windswept_delights:pine_cabinet"
+  }
+}
