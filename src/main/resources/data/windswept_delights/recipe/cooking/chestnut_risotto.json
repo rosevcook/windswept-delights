@@ -1,0 +1,16 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    { "item": "windswept:roasted_chestnuts" },
+    { "item": "windswept:roasted_chestnuts" },
+    { "item": "windswept:roasted_chestnuts" },
+    { "tag": "c:raw_chicken" },
+    { "item": "farmersdelight:onion" },
+    { "item": "farmersdelight:rice" }
+  ],
+  "result": {
+    "count": 1,
+    "id": "windswept_delights:chestnut_risotto"
+  }
+}

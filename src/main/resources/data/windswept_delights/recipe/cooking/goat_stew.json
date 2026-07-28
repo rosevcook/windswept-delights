@@ -1,0 +1,13 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    { "tag": "c:raw_goat" },
+    { "item": "minecraft:potato" },
+    { "item": "farmersdelight:rice" }
+  ],
+  "result": {
+    "count": 1,
+    "id": "windswept:goat_stew"
+  }
+}

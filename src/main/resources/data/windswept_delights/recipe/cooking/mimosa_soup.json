@@ -1,0 +1,13 @@
+{
+  "type": "farmersdelight:cooking",
+  "experience": 1.0,
+  "ingredients": [
+    { "item": "windswept:ginger_root" },
+    { "item": "windswept:mimosa" },
+    { "item": "windswept:mimosa" }
+  ],
+  "result": {
+    "count": 1,
+    "id": "windswept_delights:mimosa_soup"
+  }
+}
