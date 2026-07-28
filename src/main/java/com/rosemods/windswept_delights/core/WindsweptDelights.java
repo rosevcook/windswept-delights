@@ -44,7 +44,6 @@ public class WindsweptDelights {
     }
 
     private void commonSetup(FMLCommonSetupEvent event) {
-
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
