@@ -2,14 +2,14 @@
   "type": "farmersdelight:cutting",
   "ingredients": [
     {
-      "item": "windswept:red_rose"
+      "item": "windswept:brittlebush"
     }
   ],
   "result": [
     {
       "item": {
         "count": 2,
-        "id": "minecraft:red_dye"
+        "id": "minecraft:yellow_dye"
       }
     }
   ],

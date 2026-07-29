@@ -63,10 +63,13 @@ public class WDRecipeProvider extends BlueprintRecipeProvider {
         cuttingRecipe(output, MIMOSA.get(), Items.YELLOW_DYE, 2);
         cuttingRecipe(output, MOSS_CAMPION.get(), Items.MAGENTA_DYE, 2);
         cuttingRecipe(output, NIGHTSHADE.get(), Items.LIGHT_BLUE_DYE, 2);
-        cuttingRecipe(output, RED_ROSE.get(), Items.RED_DYE, 2);
+        cuttingRecipeNoDyeDepot(output, RED_ROSE.get(), Items.RED_DYE, 2);
         cuttingRecipe(output, SNOWDROP.get(), Items.LIGHT_GRAY_DYE, 2);
         cuttingRecipe(output, WHITE_ROSE.get(), Items.WHITE_DYE, 2);
         cuttingRecipe(output, YELLOW_ROSE.get(), Items.YELLOW_DYE, 2);
+        cuttingRecipe(output, BRITTLEBUSH.get(), Items.YELLOW_DYE, 2);
+        cuttingRecipe(output, VERBENA.get(), Items.PURPLE_DYE, 2);
+        cuttingRecipeNoDyeDepot(output, LARKSPUR.get(), Items.CYAN_DYE, 2);
 
         cuttingRecipe(output, CHRISTMAS_PUDDING.get(), CHRISTMAS_PUDDING_SLICE.get(), 4);
 
@@ -78,6 +81,13 @@ public class WDRecipeProvider extends BlueprintRecipeProvider {
         salvagePlankFromFurniture(output, CHESTNUT_PLANKS.get(), CHESTNUT_DOOR.get(), CHESTNUT_TRAPDOOR.get(), com.rosemods.windswept.core.registry.WindsweptBlocks.CHESTNUT_SIGNS.getFirst().get(), CHESTNUT_HANGING_SIGNS.getFirst().get());
         salvagePlankFromFurniture(output, HOLLY_PLANKS.get(), HOLLY_DOOR.get(), HOLLY_TRAPDOOR.get(), com.rosemods.windswept.core.registry.WindsweptBlocks.HOLLY_SIGNS.getFirst().get(), HOLLY_HANGING_SIGNS.getFirst().get());
         salvagePlankFromFurniture(output, PINE_PLANKS.get(), PINE_DOOR.get(), PINE_TRAPDOOR.get(), com.rosemods.windswept.core.registry.WindsweptBlocks.PINE_SIGNS.getFirst().get(), PINE_HANGING_SIGNS.getFirst().get());
+
+        stripLogForBark(output, HOLLY_LOG.get(), STRIPPED_HOLLY_LOG.get());
+        stripLogForBark(output, CHESTNUT_LOG.get(), STRIPPED_CHESTNUT_LOG.get());
+        stripLogForBark(output, PINE_LOG.get(), STRIPPED_PINE_LOG.get());
+        stripLogForBark(output, HOLLY_WOOD.get(), STRIPPED_HOLLY_WOOD.get());
+        stripLogForBark(output, CHESTNUT_WOOD.get(), STRIPPED_CHESTNUT_WOOD.get());
+        stripLogForBark(output, PINE_WOOD.get(), STRIPPED_PINE_WOOD.get());
     }
 
     private static void cabinet(Block cabinet, Block slab, Block trapdoor, RecipeOutput output) {
@@ -91,19 +101,19 @@ public class WDRecipeProvider extends BlueprintRecipeProvider {
     }
 
     private static void cuttingRecipe(RecipeOutput output, ItemLike input, ItemLike result, int count) {
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(input), Ingredient.of(CommonTags.Items.TOOLS_KNIFE), result, count).save(output, getSaveLocation(getName(input) + "_cutting"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(input), Ingredient.of(CommonTags.Items.TOOLS_KNIFE), result, count).save(output, getSaveLocation(getName(result) + "_from_" + getName(input) + "_cutting"));
     }
 
     private static void cuttingRecipeNoDyeDepot(RecipeOutput output, ItemLike input, ItemLike result, int count) {
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(input), Ingredient.of(CommonTags.Items.TOOLS_KNIFE), result, count).save(output.withConditions(new NotCondition(new ModLoadedCondition("dye_depot"))), getSaveLocation(getName(input) + "_cutting"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(input), Ingredient.of(CommonTags.Items.TOOLS_KNIFE), result, count).save(output.withConditions(new NotCondition(new ModLoadedCondition("dye_depot"))), getSaveLocation(getName(result) + "_from_" + getName(input) + "_cutting"));
     }
 
     private static void cuttingWithBonemeal(RecipeOutput output, ItemLike input, ItemLike result, int count) {
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(input), Ingredient.of(CommonTags.Items.TOOLS_KNIFE), result, count).addResult(Items.BONE_MEAL).save(output, getSaveLocation(getName(input) + "_cutting"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(input), Ingredient.of(CommonTags.Items.TOOLS_KNIFE), result, count).addResult(Items.BONE_MEAL).save(output, getSaveLocation(getName(result) + "_from_" + getName(input) + "_cutting"));
     }
 
     private static void cuttingWithShears(RecipeOutput output, ItemLike input, ItemLike result) {
-        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(input), Ingredient.of(Tags.Items.TOOLS_SHEAR), result).save(output, getSaveLocation(getName(input) + "_cutting"));
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(input), Ingredient.of(Tags.Items.TOOLS_SHEAR), result).save(output, getSaveLocation(getName(result) + "_from_" + getName(input) + "_cutting"));
     }
 
     private static void salvagePlankFromFurniture(RecipeOutput output, ItemLike plank, ItemLike door, ItemLike trapdoor, ItemLike sign, ItemLike hangingSign) {
