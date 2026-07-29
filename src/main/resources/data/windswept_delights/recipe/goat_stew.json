@@ -2,7 +2,7 @@
   "type": "farmersdelight:cooking",
   "experience": 1.0,
   "ingredients": [
-    { "tag": "c:raw_goat" },
+    { "tag": "c:foods/raw_goat" },
     { "item": "minecraft:potato" },
     { "item": "farmersdelight:rice" }
   ],

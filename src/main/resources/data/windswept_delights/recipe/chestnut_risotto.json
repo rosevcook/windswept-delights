@@ -5,7 +5,7 @@
     { "item": "windswept:roasted_chestnuts" },
     { "item": "windswept:roasted_chestnuts" },
     { "item": "windswept:roasted_chestnuts" },
-    { "tag": "c:raw_chicken" },
+    { "tag": "c:foods/raw_chicken" },
     { "item": "farmersdelight:onion" },
     { "item": "farmersdelight:rice" }
   ],
