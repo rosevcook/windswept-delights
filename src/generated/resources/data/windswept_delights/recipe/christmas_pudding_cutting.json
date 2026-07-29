@@ -1,0 +1,19 @@
+{
+  "type": "farmersdelight:cutting",
+  "ingredients": [
+    {
+      "item": "windswept:christmas_pudding"
+    }
+  ],
+  "result": [
+    {
+      "item": {
+        "count": 4,
+        "id": "windswept_delights:christmas_pudding_slice"
+      }
+    }
+  ],
+  "tool": {
+    "tag": "c:tools/knife"
+  }
+}

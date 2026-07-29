@@ -14,6 +14,8 @@ import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.ItemAbilities;
 import net.neoforged.neoforge.common.Tags;
+import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
+import net.neoforged.neoforge.common.conditions.NotCondition;
 import vectorwing.farmersdelight.common.crafting.ingredient.ItemAbilityIngredient;
 import vectorwing.farmersdelight.common.registry.ModItems;
 import vectorwing.farmersdelight.common.tag.CommonTags;
@@ -41,6 +43,7 @@ public class WDRecipeProvider extends BlueprintRecipeProvider {
         cabinet(PINE_CABINET.get(), PINE_SLAB.get(), PINE_TRAPDOOR.get(), output);
 
         cooking(GOAT_SHANKS.get(), COOKED_GOAT_SHANKS.get(), output);
+
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, Items.SUGAR).requires(WILD_BERRY_JUICE.get()).unlockedBy(getHasName(WILD_BERRY_JUICE.get()), has(WILD_BERRY_JUICE.get())).save(output, getSaveLocation("sugar_from_wild_berry_juice"));
         ShapelessRecipeBuilder.shapeless(RecipeCategory.FOOD, WILD_BERRY_JUICE.get()).requires(WILD_BERRIES.get(), 4).requires(Items.GLASS_BOTTLE).unlockedBy(getHasName(WILD_BERRIES.get()), has(WILD_BERRIES.get())).save(output, getSaveLocation(WILD_BERRY_JUICE.get()));
         ShapedRecipeBuilder.shaped(RecipeCategory.FOOD, WILD_BERRY_POPSICLE.get()).define('#', WILD_BERRIES.get()).define('S', Items.STICK).define('I', ICICLES.get()).pattern(" ##").pattern("I##").pattern("SI ").unlockedBy(getHasName(WILD_BERRIES.get()), has(WILD_BERRIES.get())).save(output, getSaveLocation(WILD_BERRY_POPSICLE.get()));
@@ -73,9 +76,7 @@ public class WDRecipeProvider extends BlueprintRecipeProvider {
         cuttingWithShears(output, SNOW_BOOTS.get(), Items.LEATHER);
 
         salvagePlankFromFurniture(output, CHESTNUT_PLANKS.get(), CHESTNUT_DOOR.get(), CHESTNUT_TRAPDOOR.get(), com.rosemods.windswept.core.registry.WindsweptBlocks.CHESTNUT_SIGNS.getFirst().get(), CHESTNUT_HANGING_SIGNS.getFirst().get());
-
         salvagePlankFromFurniture(output, HOLLY_PLANKS.get(), HOLLY_DOOR.get(), HOLLY_TRAPDOOR.get(), com.rosemods.windswept.core.registry.WindsweptBlocks.HOLLY_SIGNS.getFirst().get(), HOLLY_HANGING_SIGNS.getFirst().get());
-
         salvagePlankFromFurniture(output, PINE_PLANKS.get(), PINE_DOOR.get(), PINE_TRAPDOOR.get(), com.rosemods.windswept.core.registry.WindsweptBlocks.PINE_SIGNS.getFirst().get(), PINE_HANGING_SIGNS.getFirst().get());
     }
 
@@ -91,6 +92,10 @@ public class WDRecipeProvider extends BlueprintRecipeProvider {
 
     private static void cuttingRecipe(RecipeOutput output, ItemLike input, ItemLike result, int count) {
         CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(input), Ingredient.of(CommonTags.Items.TOOLS_KNIFE), result, count).save(output, getSaveLocation(getName(input) + "_cutting"));
+    }
+
+    private static void cuttingRecipeNoDyeDepot(RecipeOutput output, ItemLike input, ItemLike result, int count) {
+        CuttingBoardRecipeBuilder.cuttingRecipe(Ingredient.of(input), Ingredient.of(CommonTags.Items.TOOLS_KNIFE), result, count).save(output.withConditions(new NotCondition(new ModLoadedCondition("dye_depot"))), getSaveLocation(getName(input) + "_cutting"));
     }
 
     private static void cuttingWithBonemeal(RecipeOutput output, ItemLike input, ItemLike result, int count) {
