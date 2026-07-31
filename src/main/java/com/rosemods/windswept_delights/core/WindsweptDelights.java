@@ -20,10 +20,11 @@ import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
+import net.neoforged.neoforge.event.BlockEntityTypeAddBlocksEvent;
+import vectorwing.farmersdelight.common.registry.ModBlockEntityTypes;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -39,11 +40,13 @@ public class WindsweptDelights {
         if (FMLEnvironment.dist == Dist.CLIENT)
             bus.addListener(this::clientSetup);
 
-        bus.addListener(this::commonSetup);
+        bus.addListener(this::registerCabinets);
         bus.addListener(this::dataSetup);
     }
 
-    private void commonSetup(FMLCommonSetupEvent event) {
+
+    private void registerCabinets(BlockEntityTypeAddBlocksEvent event) {
+        WDBlocks.BLOCKS.getDeferredRegister().getEntries().forEach(block -> event.modify(ModBlockEntityTypes.CABINET.get(), block.get()));
     }
 
     private void clientSetup(FMLClientSetupEvent event) {
